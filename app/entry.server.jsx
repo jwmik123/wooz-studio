@@ -15,7 +15,33 @@ export default async function handleRequest(
   responseHeaders,
   remixContext,
 ) {
-  const {nonce, header, NonceProvider} = createContentSecurityPolicy();
+  let localDirs =
+    process.env.NODE_ENV === 'development'
+      ? ['localhost:*', 'ws://localhost:*', 'ws://127.0.0.1:*']
+      : [];
+
+  const {nonce, header, NonceProvider} = createContentSecurityPolicy({
+    scriptSrc: [
+      "'self'",
+      "'unsafe-inline'",
+      "'unsafe-eval'",
+      'https://www.gstatic.com',
+      'blob:', // Allow blob URLs in script sources
+      ...localDirs,
+    ],
+    connectSrc: [
+      "'self'",
+      'https://monorail-edge.shopifysvc.com',
+      'https://www.gstatic.com',
+      ...localDirs,
+    ],
+    workerSrc: [
+      // Explicitly allow worker scripts from specific sources
+      "'self'",
+      'blob:', // Allow blob URLs for workers
+      ...localDirs,
+    ],
+  });
 
   const body = await renderToReadableStream(
     <NonceProvider>

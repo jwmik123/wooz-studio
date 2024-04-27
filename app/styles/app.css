@@ -6,6 +6,9 @@
   --header-height: 64px;
   --color-dark: #000;
   --color-light: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 img {
@@ -298,8 +301,6 @@ aside li {
   align-items: center;
   gap: 1rem;
 }
-
-
 
 /*
 * --------------------------------------------------

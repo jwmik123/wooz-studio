@@ -1,4 +1,3 @@
-/** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
   appDirectory: 'app',
   ignoredRouteFiles: ['**/.*'],
@@ -14,6 +13,7 @@ module.exports = {
   serverConditions: ['worker', process.env.NODE_ENV],
   serverDependenciesToBundle: 'all',
   serverModuleFormat: 'esm',
+  browserNodeBuiltinsPolyfill: {modules: {buffer: true}},
   serverPlatform: 'neutral',
   serverMinify: process.env.NODE_ENV === 'production',
   future: {

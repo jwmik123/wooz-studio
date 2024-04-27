@@ -1,13 +1,13 @@
 import {Await} from '@remix-run/react';
 import {Suspense} from 'react';
-import {Aside} from '~/components/Aside';
+import {Aside} from '~/components/shop/Aside';
 import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
-import {CartMain} from '~/components/Cart';
+import {CartMain} from '~/components/shop/Cart';
 import {
   PredictiveSearchForm,
   PredictiveSearchResults,
-} from '~/components/Search';
+} from '~/components/shop/Search';
 
 /**
  * @param {LayoutProps}
@@ -15,16 +15,16 @@ import {
 export function Layout({cart, children = null, footer, header, isLoggedIn}) {
   return (
     <>
-      <CartAside cart={cart} />
-      <SearchAside />
-      <MobileMenuAside menu={header?.menu} shop={header?.shop} />
-      {header && <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />}
-      <main>{children}</main>
-      <Suspense>
-        <Await resolve={footer}>
+      {/* <CartAside cart={cart} /> */}
+      {/* <SearchAside /> */}
+      {/* <MobileMenuAside menu={header?.menu} shop={header?.shop} /> */}
+      {/* {header && <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />} */}
+      <main className="m-0">{children}</main>
+      {/* <Suspense> */}
+      {/* <Await resolve={footer}>
           {(footer) => <Footer menu={footer?.menu} shop={header?.shop} />}
-        </Await>
-      </Suspense>
+        </Await> */}
+      {/* </Suspense> */}
     </>
   );
 }
